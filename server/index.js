@@ -9,11 +9,13 @@ const MAX_ROOM_COUNT = 1;
 /* Room struct:
   players: []
     (name)
+  gameState
 */
 
 /* GameState struct
   numberPlayers
   started
+  cards []
 */
 
 let rooms = {};
@@ -41,6 +43,7 @@ io.on("connection", function (socket) {
         io.to(roomName).emit("updateGameState", {
           numberOfPlayers: 1,
           started: false,
+          cards: [],
         });
       }
     }
@@ -54,9 +57,19 @@ io.on("connection", function (socket) {
         io.to(roomName).emit("updateGameState", {
           numberOfPlayers: rooms[roomName].players.length,
           started: false,
+          cards: [],
         });
       }
     }
+  });
+
+  socket.on("startGame", (roomName) => {
+    console.log(`Game started in room ${roomName}`);
+    io.to(roomName).emit("updateGameState", {
+      numberOfPlayers: rooms[roomName].players.length,
+      started: true,
+      cards: [1],
+    });
   });
 });
 

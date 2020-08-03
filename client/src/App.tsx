@@ -5,6 +5,7 @@ import "./App.scss";
 import { LoginPage } from "./LoginPage";
 import { GamePage } from "./GamePage";
 import { GameState, initialGameState } from "./models/GameState";
+import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
 
 const SERVER_IP = "http://localhost:3001";
 
@@ -16,18 +17,27 @@ const App = () => {
   const [roomName, setRoomName] = useState("");
   const [userName, setUserName] = useState("");
   const [connected, setConnected] = useState(false);
-
   const [gameState, setGameState] = useState<GameState>(initialGameState);
+  const [socketEmitters, setSocketEmitters] = useState<SocketEmitters>(
+    initialSocketEmitters
+  );
 
   useEffect(() => {
     if (connected) {
       const socket = io(SERVER_IP);
 
-      socket.emit("join", roomName);
+      socket.emit("join", roomName, userName);
 
       socket.on("updateGameState", (gameState: GameState) => {
         console.log(gameState);
         setGameState(gameState);
+      });
+
+      setSocketEmitters({
+        startGame: () => {
+          console.log("starting game");
+          socket.emit("startGame", roomName);
+        },
       });
     }
   }, [connected, roomName]);
@@ -43,7 +53,7 @@ const App = () => {
           setConnected={setConnected}
         />
       ) : (
-        <GamePage gameState={gameState} />
+        <GamePage gameState={gameState} socketEmitters={socketEmitters} />
       )}
     </div>
   );

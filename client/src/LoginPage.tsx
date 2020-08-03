@@ -22,7 +22,7 @@ export const LoginPage = (props: LoginPageProps) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className="login-form">
       <h1>Connect</h1>
       <input
         placeholder="Roomname"
