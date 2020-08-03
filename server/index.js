@@ -6,6 +6,11 @@ const PORT_NUMBER = 3001;
 const MAX_PLAYERS = 2;
 const MAX_ROOM_COUNT = 1;
 
+const THEME_RANGE = [0, 7];
+const EVENT_RANGE = [8, 22];
+const THING_RANGE = [23, 37];
+const INHABITANT_RANGE = [38, 52];
+
 /* Room struct:
   players: []
     (name)
@@ -65,10 +70,12 @@ io.on("connection", function (socket) {
 
   socket.on("startGame", (roomName) => {
     console.log(`Game started in room ${roomName}`);
+
+    const firstCardID = getRandomInt(THEME_RANGE[0], THEME_RANGE[1]);
     io.to(roomName).emit("updateGameState", {
       numberOfPlayers: rooms[roomName].players.length,
       started: true,
-      cards: [1],
+      cards: [firstCardID],
     });
   });
 });
@@ -76,3 +83,9 @@ io.on("connection", function (socket) {
 http.listen(PORT_NUMBER, function () {
   console.log(`listening on ${PORT_NUMBER}`);
 });
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

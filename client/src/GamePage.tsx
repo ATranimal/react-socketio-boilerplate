@@ -2,6 +2,7 @@ import React from "react";
 
 import { GameState } from "./models/GameState";
 import { SocketEmitters } from "./models/SocketEmitters";
+import { Card } from "./Card";
 
 interface GamePageProps {
   gameState: GameState;
@@ -27,8 +28,8 @@ export const GamePage = (props: GamePageProps) => {
         <div className="game-board">
           {gameState.cards?.map((card) => {
             return (
-              <div className="card" key={card}>
-                {card}
+              <div key={card}>
+                <Card id={card} />
               </div>
             );
           })}

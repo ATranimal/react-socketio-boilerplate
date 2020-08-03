@@ -35,12 +35,11 @@ const App = () => {
 
       setSocketEmitters({
         startGame: () => {
-          console.log("starting game");
           socket.emit("startGame", roomName);
         },
       });
     }
-  }, [connected, roomName]);
+  }, [connected, roomName, userName]);
 
   return (
     <div className="app">
