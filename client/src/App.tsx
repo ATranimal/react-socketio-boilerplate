@@ -6,8 +6,9 @@ import { LoginPage } from "./LoginPage";
 import { GamePage } from "./GamePage";
 import { GameState, initialGameState } from "./models/GameState";
 import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
+import { CardType } from "./models/CardType";
 
-const SERVER_IP = "http://localhost:3001";
+const SERVER_IP = "192.168.0.11:3001";
 
 interface AppProps {
   name: string;
@@ -37,6 +38,9 @@ const App = () => {
         startGame: () => {
           socket.emit("startGame", roomName);
         },
+        nextTurn: (cardType: CardType) => {
+          socket.emit("nextTurn", roomName, cardType);
+        },
       });
     }
   }, [connected, roomName, userName]);
@@ -52,7 +56,12 @@ const App = () => {
           setConnected={setConnected}
         />
       ) : (
-        <GamePage gameState={gameState} socketEmitters={socketEmitters} />
+        <GamePage
+          gameState={gameState}
+          socketEmitters={socketEmitters}
+          userName={userName}
+          roomName={roomName}
+        />
       )}
     </div>
   );

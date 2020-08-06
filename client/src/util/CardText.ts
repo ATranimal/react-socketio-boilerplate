@@ -61,7 +61,6 @@ export const getCardTextFromID = (id: number): string => {
 };
 
 export const getCardTypeFromID = (id: number): CardType => {
-  console.log(cardText.length);
   if (id >= 0 && id <= 7) {
     return CardType.Theme;
   } else if (id >= 8 && id <= 22) {

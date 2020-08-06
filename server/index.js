@@ -14,7 +14,6 @@ const INHABITANT_RANGE = [38, 52];
 /* Room struct:
   players: []
     (name)
-  gameState
 */
 
 /* GameState struct
@@ -42,14 +41,13 @@ io.on("connection", function (socket) {
         console.log("Too many rooms, cannot create a new one");
       } else {
         rooms[roomName] = {
+          started: false,
+          playerTurn: 0,
+          cards: [],
           players: [userName],
         };
         socket.join(roomName);
-        io.to(roomName).emit("updateGameState", {
-          numberOfPlayers: 1,
-          started: false,
-          cards: [],
-        });
+        io.to(roomName).emit("updateGameState", rooms[roomName]);
       }
     }
     // Add player to existing room
@@ -59,11 +57,7 @@ io.on("connection", function (socket) {
       } else {
         rooms[roomName].players.push(userName);
         socket.join(roomName);
-        io.to(roomName).emit("updateGameState", {
-          numberOfPlayers: rooms[roomName].players.length,
-          started: false,
-          cards: [],
-        });
+        io.to(roomName).emit("updateGameState", rooms[roomName]);
       }
     }
   });
@@ -72,11 +66,34 @@ io.on("connection", function (socket) {
     console.log(`Game started in room ${roomName}`);
 
     const firstCardID = getRandomInt(THEME_RANGE[0], THEME_RANGE[1]);
-    io.to(roomName).emit("updateGameState", {
-      numberOfPlayers: rooms[roomName].players.length,
-      started: true,
-      cards: [firstCardID],
-    });
+
+    rooms[roomName].cards.push(firstCardID);
+    rooms[roomName].started = true;
+
+    io.to(roomName).emit("updateGameState", rooms[roomName]);
+  });
+
+  socket.on("nextTurn", (roomName, cardType) => {
+    console.log(`Next turn in ${roomName} with type ${cardType}`);
+    let newCardID = 0;
+    if (cardType === 1) {
+      // Event
+      newCardID = getRandomInt(EVENT_RANGE[0], EVENT_RANGE[1]);
+    }
+    if (cardType === 2) {
+      // Thing
+      newCardID = getRandomInt(THING_RANGE[0], THING_RANGE[1]);
+    }
+    if (cardType === 3) {
+      // Inhabitant
+      newCardID = getRandomInt(INHABITANT_RANGE[0], INHABITANT_RANGE[1]);
+    }
+
+    rooms[roomName].cards.push(newCardID);
+    rooms[roomName].playerTurn =
+      (rooms[roomName].playerTurn + 1) % rooms[roomName].players.length;
+
+    io.to(roomName).emit("updateGameState", rooms[roomName]);
   });
 });
 

@@ -1,11 +1,13 @@
 export interface GameState {
-  numberOfPlayers: number | null;
   started: boolean | null;
+  playerTurn: number | null;
   cards: number[] | null;
+  players: string[] | null;
 }
 
 export const initialGameState: GameState = {
-  numberOfPlayers: null,
   started: null,
+  playerTurn: null,
   cards: null,
+  players: null,
 };
