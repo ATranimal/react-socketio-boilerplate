@@ -71,7 +71,18 @@ io.on("connection", function (socket) {
     }
     // Add player to existing room
     else {
-      if (rooms[roomName].players.length >= MAX_PLAYERS) {
+      if (rooms[roomName].started) {
+        // If player is existing in the room in a started game
+        if (rooms[roomName].players.includes(userName)) {
+          socket.join(roomName);
+          io.to(roomName).emit("updateGameState", rooms[roomName]);
+        } else {
+          // If player is trying to join a started game but is not a player
+          console.log(
+            `Game in room ${roomName} started, and ${userName} is not an existing player`
+          );
+        }
+      } else if (rooms[roomName].players.length >= MAX_PLAYERS) {
         console.log("Room is full, cannot add player to room");
       } else {
         rooms[roomName].players.push(userName);
