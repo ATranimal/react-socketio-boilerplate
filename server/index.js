@@ -2,7 +2,7 @@ const app = require("express")();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
-const PORT_NUMBER = 3001;
+const PORT_NUMBER = 4001;
 const MAX_PLAYERS = 2;
 const MAX_ROOM_COUNT = 1;
 
@@ -11,28 +11,47 @@ const EVENT_RANGE = [8, 22];
 const THING_RANGE = [23, 37];
 const INHABITANT_RANGE = [38, 52];
 
-/* Room struct:
-  players: []
-    (name)
+/* PlayerMap struct:
+  id {
+    name: string
+  }
 */
 
 /* GameState struct
-  numberPlayers
-  started
-  cards []
+  roomName {
+    started boolean
+    playerTurn number
+    cards number[]
+    players string[]
+  }
 */
 
 let rooms = {};
+let playerMap = {};
 
 io.on("connection", function (socket) {
   console.log("A user has connected.");
+  playerMap[socket.id] = "";
 
   socket.on("disconnect", function () {
-    console.log("A user has disconnected.");
+    const playerName = playerMap[socket.id];
+    console.log(`${playerName} has disconnected`);
+
+    // Remove player from room if it is active, else keep in room so they can reconnect
+    for (var room in rooms) {
+      if (rooms[room].players.includes(playerName) && !rooms[room].started) {
+        rooms[room].players = rooms[room].players.filter(
+          (name) => name !== playerName
+        );
+        io.to(room).emit("updateGameState", rooms[room]);
+      }
+    }
+    delete playerMap[socket.id];
   });
 
   socket.on("join", (roomName, userName) => {
     console.log(`${userName} is joining ${roomName}`);
+    playerMap[socket.id] = userName;
 
     // Create a new room
     if (!rooms.hasOwnProperty(roomName)) {

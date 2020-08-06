@@ -8,7 +8,7 @@ import { GameState, initialGameState } from "./models/GameState";
 import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
 import { CardType } from "./models/CardType";
 
-const SERVER_IP = "192.168.0.11:3001";
+const SERVER_IP = "192.168.0.12:4001";
 
 interface AppProps {
   name: string;
