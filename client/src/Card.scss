@@ -1,7 +1,7 @@
 .card {
   font-family: "Quicksand", sans-serif;
-  width: 320px;
-  height: 600px;
+  width: 14em;
+  height: 16em;
   border: 4px solid black;
   background: grey;
   border-radius: 50px;
@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 24px;
+  font-size: 1.25em;
   padding: 24px;
   line-height: 1.25;
+  margin: 24px;
 }

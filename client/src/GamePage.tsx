@@ -45,7 +45,7 @@ export const GamePage = (props: GamePageProps) => {
       ) : (
         <div className="game-board">
           <div className="cards">
-            {gameState?.cards?.map((card) => {
+            {gameState?.cards?.map(card => {
               return (
                 <div key={card}>
                   <Card id={card} />

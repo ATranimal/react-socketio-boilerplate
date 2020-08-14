@@ -8,7 +8,7 @@ import { GameState, initialGameState } from "./models/GameState";
 import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
 import { CardType } from "./models/CardType";
 
-const SERVER_IP = "192.168.0.12:4001";
+const SERVER_IP = "localhost:4001";
 
 interface AppProps {
   name: string;
@@ -40,7 +40,7 @@ const App = () => {
         },
         nextTurn: (cardType: CardType) => {
           socket.emit("nextTurn", roomName, cardType);
-        },
+        }
       });
     }
   }, [connected, roomName, userName]);
