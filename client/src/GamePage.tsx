@@ -24,25 +24,31 @@ export const GamePage = (props: GamePageProps) => {
     return false;
   };
 
-  return (
-    <div className="game">
-      <div className="player-counter">
-        <div className="room-name">{roomName}</div>
-        <div className="players-connected">
-          Players Connected: {gameState?.players?.length}
-        </div>
-        <div className="turn-indicator">
-          Your turn? {isYourTurn().toString()}
-        </div>
-      </div>
-
-      {!gameState?.started ? (
+  const renderWaitingPage = () => {
+    return (
+      <div className="waiting-page">
         <input
           type="button"
           onClick={() => socketEmitters.startGame()}
           value="Click to Start"
         />
-      ) : (
+      </div>
+    );
+  };
+
+  const renderGamePage = () => {
+    return (
+      <div className="game">
+        <div className="player-counter">
+          <div className="room-name">{roomName}</div>
+          <div className="players-connected">
+            Players Connected: {gameState?.players?.length}
+          </div>
+          <div className="turn-indicator">
+            Your turn? {isYourTurn().toString()}
+          </div>
+        </div>
+
         <div className="game-board">
           <div className="cards">
             {gameState?.cards?.map(card => {
@@ -75,7 +81,9 @@ export const GamePage = (props: GamePageProps) => {
             ></input>
           </div>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  };
+
+  return gameState.started ? renderGamePage() : renderWaitingPage();
 };
