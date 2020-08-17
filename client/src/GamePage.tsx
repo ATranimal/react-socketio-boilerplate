@@ -27,11 +27,30 @@ export const GamePage = (props: GamePageProps) => {
   const renderWaitingPage = () => {
     return (
       <div className="waiting-page">
-        <input
-          type="button"
-          onClick={() => socketEmitters.startGame()}
-          value="Click to Start"
-        />
+        <h2>Waiting for players to connect...</h2>
+        <div className="room-display">
+          <div className="room-display-name">Room Name: {roomName}</div>
+        </div>
+        <div className="player-count">
+          <label className="player-count-label">Players:</label>
+          {gameState?.players?.map((player, idx) => {
+            return (
+              <div className="player-name" key={idx}>
+                {player}
+              </div>
+            );
+          })}
+        </div>
+        {gameState?.players?.[0] === userName && (
+          <div className="game-start">
+            <h3> You're the host. </h3>
+            <input
+              type="button"
+              onClick={() => socketEmitters.startGame()}
+              value="Click to Start"
+            />
+          </div>
+        )}
       </div>
     );
   };
@@ -51,7 +70,7 @@ export const GamePage = (props: GamePageProps) => {
 
         <div className="game-board">
           <div className="cards">
-            {gameState?.cards?.map(card => {
+            {gameState?.cards?.map((card) => {
               return (
                 <div key={card}>
                   <Card id={card} />
@@ -85,5 +104,18 @@ export const GamePage = (props: GamePageProps) => {
     );
   };
 
-  return gameState.started ? renderGamePage() : renderWaitingPage();
+  const renderErrorPage = () => {
+    return (
+      <div className="error-page">
+        Error connecting.
+        <button></button>
+      </div>
+    );
+  };
+
+  return gameState.started
+    ? renderGamePage()
+    : gameState.started === null
+    ? renderErrorPage()
+    : renderWaitingPage();
 };

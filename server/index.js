@@ -3,8 +3,8 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
 const PORT_NUMBER = 4001;
-const MAX_PLAYERS = 2;
-const MAX_ROOM_COUNT = 1;
+const MAX_PLAYERS = 4;
+const MAX_ROOM_COUNT = 10;
 
 const THEME_RANGE = [0, 7];
 const EVENT_RANGE = [8, 22];
@@ -29,11 +29,11 @@ const INHABITANT_RANGE = [38, 52];
 let rooms = {};
 let playerMap = {};
 
-io.on("connection", function(socket) {
+io.on("connection", function (socket) {
   console.log("A user has connected.");
   playerMap[socket.id] = "";
 
-  socket.on("disconnect", function() {
+  socket.on("disconnect", function () {
     const playerName = playerMap[socket.id];
     console.log(`${playerName} has disconnected`);
 
@@ -41,7 +41,7 @@ io.on("connection", function(socket) {
     for (var room in rooms) {
       if (rooms[room].players.includes(playerName) && !rooms[room].started) {
         rooms[room].players = rooms[room].players.filter(
-          name => name !== playerName
+          (name) => name !== playerName
         );
         io.to(room).emit("updateGameState", rooms[room]);
       }
@@ -63,7 +63,7 @@ io.on("connection", function(socket) {
           started: false,
           playerTurn: 0,
           cards: [],
-          players: [userName]
+          players: [userName],
         };
         socket.join(roomName);
         io.to(roomName).emit("updateGameState", rooms[roomName]);
@@ -92,7 +92,7 @@ io.on("connection", function(socket) {
     }
   });
 
-  socket.on("startGame", roomName => {
+  socket.on("startGame", (roomName) => {
     console.log(`Game started in room ${roomName}`);
 
     const firstCardID = getRandomInt(THEME_RANGE[0], THEME_RANGE[1]);
@@ -127,7 +127,7 @@ io.on("connection", function(socket) {
   });
 });
 
-http.listen(PORT_NUMBER, function() {
+http.listen(PORT_NUMBER, function () {
   console.log(`listening on ${PORT_NUMBER}`);
 });
 

@@ -40,7 +40,7 @@ const App = () => {
         },
         nextTurn: (cardType: CardType) => {
           socket.emit("nextTurn", roomName, cardType);
-        }
+        },
       });
     }
   }, [connected, roomName, userName]);

@@ -13,7 +13,7 @@ interface LoginPageProps {
 enum LoginState {
   "Main",
   "Create",
-  "Join"
+  "Join",
 }
 
 export const LoginPage = (props: LoginPageProps) => {
@@ -48,18 +48,18 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const renderCreate = () => {
     return (
-      <form onSubmit={e => handleSubmit(e)} className="login-form">
+      <form onSubmit={(e) => handleSubmit(e)} className="login-form">
         <label htmlFor="roomName">Room Name</label>
         <input
           value={roomName}
           id="roomName"
-          onChange={e => setRoomName(e.target.value)}
+          onChange={(e) => setRoomName(e.target.value)}
         ></input>
         <label htmlFor="userName">User Name</label>
         <input
           value={userName}
           id="userName"
-          onChange={e => setUserName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
         ></input>
         <input
           type="submit"
@@ -72,16 +72,16 @@ export const LoginPage = (props: LoginPageProps) => {
 
   const renderJoin = () => {
     return (
-      <form onSubmit={e => handleSubmit(e)} className="login-form">
+      <form onSubmit={(e) => handleSubmit(e)} className="login-form">
         <input
           placeholder="Roomname"
           value={roomName}
-          onChange={e => setRoomName(e.target.value)}
+          onChange={(e) => setRoomName(e.target.value)}
         ></input>
         <input
           placeholder="Username"
           value={userName}
-          onChange={e => setUserName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
         ></input>
         <input type="submit" />
       </form>
@@ -89,7 +89,7 @@ export const LoginPage = (props: LoginPageProps) => {
   };
 
   return (
-    <div className="login-form">
+    <div className="login-page">
       <h1>One Hour World Builders</h1>
       {loginPageState === LoginState.Main && renderMain()}
       {loginPageState === LoginState.Create && renderCreate()}
