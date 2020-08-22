@@ -11,3 +11,10 @@ export const initialGameState: GameState = {
   cards: null,
   players: null,
 };
+
+export const mockGameState: GameState = {
+  started: true,
+  playerTurn: 1,
+  cards: [1],
+  players: ["Andrew"],
+};

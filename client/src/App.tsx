@@ -4,7 +4,7 @@ import "./App.scss";
 
 import { LoginPage } from "./LoginPage";
 import { GamePage } from "./GamePage";
-import { GameState, initialGameState } from "./models/GameState";
+import { GameState, initialGameState, mockGameState } from "./models/GameState";
 import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
 import { CardType } from "./models/CardType";
 
@@ -15,10 +15,18 @@ interface AppProps {
 }
 
 const App = () => {
-  const [roomName, setRoomName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [connected, setConnected] = useState(false);
-  const [gameState, setGameState] = useState<GameState>(initialGameState);
+  // For dev
+  // const [roomName, setRoomName] = useState("");
+  // const [userName, setUserName] = useState("");
+  // const [connected, setConnected] = useState(false);
+  // const [gameState, setGameState] = useState<GameState>(initialGameState);
+
+  // For Testing
+  const [roomName, setRoomName] = useState("Test Room");
+  const [userName, setUserName] = useState("Andrew");
+  const [connected, setConnected] = useState(true);
+  const [gameState, setGameState] = useState<GameState>(mockGameState);
+
   const [socketEmitters, setSocketEmitters] = useState<SocketEmitters>(
     initialSocketEmitters
   );
