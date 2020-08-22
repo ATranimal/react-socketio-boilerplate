@@ -23,7 +23,7 @@ const App = () => {
 
   // For Testing
   const [roomName, setRoomName] = useState("Test Room");
-  const [userName, setUserName] = useState("Andrew");
+  const [userName, setUserName] = useState("Kaelan");
   const [connected, setConnected] = useState(true);
   const [gameState, setGameState] = useState<GameState>(mockGameState);
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { GameState } from "../models/GameState";
 import { SocketEmitters } from "../models/SocketEmitters";
+import { PlayerList } from "./PlayerList";
 
 interface WaitingPageProps {
   gameState: GameState;
@@ -18,16 +19,7 @@ export const WaitingPage = (props: WaitingPageProps) => {
       <div className="room-display">
         <div className="room-display-name">Room Name: {roomName}</div>
       </div>
-      <div className="player-count">
-        <label className="player-count-label">Players:</label>
-        {gameState?.players?.map((player, idx) => {
-          return (
-            <div className="player-name" key={idx}>
-              {player}
-            </div>
-          );
-        })}
-      </div>
+      <PlayerList players={gameState?.players} activePlayerIndex={null} />
       {gameState?.players?.[0] === userName && (
         <div className="game-start">
           <h3> You're the host. </h3>

@@ -4,6 +4,7 @@ import { Card } from "../Card";
 import { isYourTurn } from "../util/Turn";
 import { SocketEmitters } from "../models/SocketEmitters";
 import { CardType } from "../models/CardType";
+import { RoomInfo } from "./RoomInfo";
 
 interface PlayPageProps {
   gameState: GameState;
@@ -14,18 +15,11 @@ interface PlayPageProps {
 
 export const PlayPage = (props: PlayPageProps) => {
   const { gameState, socketEmitters, roomName, userName } = props;
+  console.log(gameState);
 
   return (
     <div className="game">
-      <div className="player-counter">
-        <div className="room-name">{roomName}</div>
-        <div className="players-connected">
-          Players Connected: {gameState?.players?.length}
-        </div>
-        <div className="turn-indicator">
-          Your turn? {isYourTurn(gameState, userName).toString()}
-        </div>
-      </div>
+      <RoomInfo gameState={gameState} userName={userName} roomName={roomName} />
 
       <div className="game-board">
         <div className="cards">

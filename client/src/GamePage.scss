@@ -21,21 +21,3 @@
     }
   }
 }
-
-.room-display-name {
-  font-weight: 700;
-  font-size: 1.25em;
-  margin-bottom: 24px;
-}
-
-.player-count {
-  &-label {
-    line-height: 0.6em;
-    font-weight: 300;
-    margin-bottom: 8px;
-  }
-
-  .player-name {
-    margin-top: 16px;
-  }
-}

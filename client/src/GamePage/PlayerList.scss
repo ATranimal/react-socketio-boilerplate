@@ -1,0 +1,18 @@
+.player-count {
+  &-label {
+    line-height: 0.6em;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .player-name {
+    margin-top: 16px;
+  }
+
+  margin-bottom: 24px;
+}
+
+.active-player {
+  font-weight: 700;
+  text-shadow: 2px black;
+}

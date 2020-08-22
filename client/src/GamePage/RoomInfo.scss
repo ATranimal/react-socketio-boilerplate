@@ -1,0 +1,24 @@
+@import "../styles/_colors.scss";
+
+.room-info {
+  position: absolute;
+  top: 35%;
+  left: -12em;
+  padding: 3em;
+
+  border: 6px solid $border-colour;
+  border-radius: 24px;
+  background-color: $button-bg;
+
+  transition: left 1s;
+  cursor: pointer;
+
+  .room-name {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+.opened {
+  left: 0px;
+}
