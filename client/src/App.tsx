@@ -16,16 +16,16 @@ interface AppProps {
 
 const App = () => {
   // For dev
-  // const [roomName, setRoomName] = useState("");
-  // const [userName, setUserName] = useState("");
-  // const [connected, setConnected] = useState(false);
-  // const [gameState, setGameState] = useState<GameState>(initialGameState);
+  const [roomName, setRoomName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [connected, setConnected] = useState(false);
+  const [gameState, setGameState] = useState<GameState>(initialGameState);
 
   // For Testing
-  const [roomName, setRoomName] = useState("Test Room");
-  const [userName, setUserName] = useState("Kaelan");
-  const [connected, setConnected] = useState(true);
-  const [gameState, setGameState] = useState<GameState>(mockGameState);
+  // const [roomName, setRoomName] = useState("Test Room");
+  // const [userName, setUserName] = useState("Kaelan");
+  // const [connected, setConnected] = useState(true);
+  // const [gameState, setGameState] = useState<GameState>(mockGameState);
 
   const [socketEmitters, setSocketEmitters] = useState<SocketEmitters>(
     initialSocketEmitters

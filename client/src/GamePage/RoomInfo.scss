@@ -3,11 +3,12 @@
 .room-info {
   position: absolute;
   top: 35%;
-  left: -12em;
+  left: -10em;
+  width: 8em;
   padding: 3em;
 
   border: 6px solid $border-colour;
-  border-radius: 24px;
+  border-radius: 32px;
   background-color: $button-bg;
 
   transition: left 1s;
