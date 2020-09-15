@@ -1,0 +1,8 @@
+.theme-card {
+  position: absolute;
+  left: 50%;
+  cursor: pointer;
+  transition: top 1s;
+
+  transform: translate(-50%, -50%);
+}

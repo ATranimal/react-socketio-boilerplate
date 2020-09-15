@@ -3,4 +3,9 @@
 .app {
   text-align: center;
   font-family: "Quicksand", sans-serif;
+  color: $font-colour;
+}
+
+body {
+  background-color: $bg-colour;
 }

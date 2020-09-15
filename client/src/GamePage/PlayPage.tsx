@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { GameState } from "../models/GameState";
 import { Card } from "../Card";
 import { isYourTurn } from "../util/Turn";
 import { SocketEmitters } from "../models/SocketEmitters";
 import { CardType } from "../models/CardType";
 import { RoomInfo } from "./RoomInfo";
+import { DrawPile } from "./DrawPile";
+
+import "./PlayPage.scss";
 
 interface PlayPageProps {
   gameState: GameState;
@@ -15,42 +18,56 @@ interface PlayPageProps {
 
 export const PlayPage = (props: PlayPageProps) => {
   const { gameState, socketEmitters, roomName, userName } = props;
-  console.log(gameState);
+
+  const [isThemeOpen, setIsThemeOpen] = useState(true);
 
   return (
     <div className="game">
       <RoomInfo gameState={gameState} userName={userName} roomName={roomName} />
 
-      <div className="game-board">
-        <div className="cards">
-          {gameState?.cards?.map((card) => {
+      <div
+        className="game-board"
+        onClick={() => {
+          if (isThemeOpen) {
+            setIsThemeOpen(false);
+          }
+        }}
+      >
+        <div
+          className="theme-card"
+          style={{ top: isThemeOpen ? "50%" : "-17%" }}
+          onClick={() => {
+            setIsThemeOpen(!isThemeOpen);
+          }}
+        >
+          <Card id={gameState && gameState.cards ? gameState.cards[0] : 1} />
+        </div>
+        {/* <div className="cards">
+          {gameState?.cards?.map(card => {
             return (
               <div key={card}>
                 <Card id={card} />
               </div>
             );
           })}
-        </div>
+        </div> */}
 
         <div className="card-buttons">
-          <input
-            type="button"
-            onClick={() => socketEmitters.nextTurn(CardType.Event)}
-            value="Event"
+          <DrawPile
+            cardType={CardType.Event}
+            socketEmitters={socketEmitters}
             disabled={!isYourTurn(gameState, userName)}
-          ></input>
-          <input
-            type="button"
-            onClick={() => socketEmitters.nextTurn(CardType.Thing)}
-            value="Thing"
+          />
+          <DrawPile
+            cardType={CardType.Thing}
+            socketEmitters={socketEmitters}
             disabled={!isYourTurn(gameState, userName)}
-          ></input>
-          <input
-            type="button"
-            onClick={() => socketEmitters.nextTurn(CardType.Inhabitant)}
-            value="Inhabitant"
+          />
+          <DrawPile
+            cardType={CardType.Inhabitant}
+            socketEmitters={socketEmitters}
             disabled={!isYourTurn(gameState, userName)}
-          ></input>
+          />
         </div>
       </div>
     </div>
