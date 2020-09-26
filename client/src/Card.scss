@@ -15,7 +15,7 @@
   margin: 8px 24px;
 
   .text {
-    height: 100%;
-    overflow: auto;
+    max-height: 100%;
+    padding: 4px;
   }
 }

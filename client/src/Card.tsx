@@ -1,6 +1,8 @@
 import React from "react";
+
+import CustomScroll from "react-custom-scroll";
+
 import { getCardTextFromID, getColourFromId } from "./util/CardText";
-import "simplebar";
 
 import "./Card.scss";
 
@@ -18,8 +20,10 @@ export const Card = (props: CardProps) => {
         backgroundColor: getColourFromId(id)
       }}
     >
-      <div className="text" data-simplebar>
-        {getCardTextFromID(id)}
+      <div className="text">
+        <CustomScroll heightRelativeToParent="calc(100%)">
+          {getCardTextFromID(id)}
+        </CustomScroll>
       </div>
     </div>
   );
