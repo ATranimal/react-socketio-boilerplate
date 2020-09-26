@@ -1,8 +1,9 @@
 import React from "react";
 import { getCardTextFromID, getColourFromId } from "./util/CardText";
+import "simplebar";
 
 import "./Card.scss";
-import { CardType } from "./models/CardType";
+
 interface CardProps {
   id: number;
 }
@@ -17,7 +18,9 @@ export const Card = (props: CardProps) => {
         backgroundColor: getColourFromId(id)
       }}
     >
-      <div className="text">{getCardTextFromID(id)}</div>
+      <div className="text" data-simplebar>
+        {getCardTextFromID(id)}
+      </div>
     </div>
   );
 };

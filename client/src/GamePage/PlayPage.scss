@@ -1,3 +1,15 @@
+.game {
+  height: 100vh;
+}
+
+.game-board {
+  height: 100%;
+}
+
+.card-buttons {
+  height: 100%;
+}
+
 .theme-card {
   position: absolute;
   left: 50%;
@@ -5,4 +17,5 @@
   transition: top 1s;
 
   transform: translate(-50%, -50%);
+  z-index: 5;
 }

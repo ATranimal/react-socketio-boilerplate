@@ -35,22 +35,13 @@ export const PlayPage = (props: PlayPageProps) => {
       >
         <div
           className="theme-card"
-          style={{ top: isThemeOpen ? "50%" : "-17%" }}
+          style={{ top: isThemeOpen ? "50%" : "-12%" }}
           onClick={() => {
             setIsThemeOpen(!isThemeOpen);
           }}
         >
           <Card id={gameState && gameState.cards ? gameState.cards[0] : 1} />
         </div>
-        {/* <div className="cards">
-          {gameState?.cards?.map(card => {
-            return (
-              <div key={card}>
-                <Card id={card} />
-              </div>
-            );
-          })}
-        </div> */}
 
         <div className="card-buttons">
           <DrawPile
