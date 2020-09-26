@@ -2183,6 +2183,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-custom-scroll@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-custom-scroll/-/react-custom-scroll-4.2.0.tgz#eba8f572785ca0401c56e1fa188c21be6eb4e135"
+  integrity sha512-3HzkCU/n/TDCXK+uIlNf17MP3n3U1q7N0aANjk52POLooqUHkRMSiB0thqToqKNM0ryk4a2MN73QrogsAJgyBQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@*", "@types/react-dom@^16.9.0":
   version "16.9.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
@@ -11377,6 +11384,11 @@ react-clientside-effect@^1.2.2:
   integrity sha512-nRmoyxeok5PBO6ytPvSjKp9xwXg9xagoTK1mMjwnQxqM9Hd7MNPl+LS1bOSOe+CV2+4fnEquc7H/S8QD3q697A==
   dependencies:
     "@babel/runtime" "^7.0.0"
+
+react-custom-scroll@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-custom-scroll/-/react-custom-scroll-4.2.1.tgz#04081737c8f665103660239ff6e279916e8954bb"
+  integrity sha512-R0iBc61fUVA+EpMqFT+dseoOjgTf0sIggBwNuNUmyEm4YqT3py6Bo1/+9FYDtxIKC/MMjZ7Cu2SPWA1Ghm0kBg==
 
 react-dev-utils@^10.2.1:
   version "10.2.1"
