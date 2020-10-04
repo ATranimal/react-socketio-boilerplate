@@ -8,6 +8,8 @@ import { RoomInfo } from "./RoomInfo";
 import { DrawPile } from "./DrawPile";
 
 import "./PlayPage.scss";
+import { getCardTypeFromID } from "../util/CardText";
+import CustomScroll from "react-custom-scroll";
 
 interface PlayPageProps {
   gameState: GameState;
@@ -44,21 +46,42 @@ export const PlayPage = (props: PlayPageProps) => {
         </div>
 
         <div className="card-buttons">
-          <DrawPile
-            cardType={CardType.Event}
-            socketEmitters={socketEmitters}
-            disabled={!isYourTurn(gameState, userName)}
-          />
-          <DrawPile
-            cardType={CardType.Thing}
-            socketEmitters={socketEmitters}
-            disabled={!isYourTurn(gameState, userName)}
-          />
-          <DrawPile
-            cardType={CardType.Inhabitant}
-            socketEmitters={socketEmitters}
-            disabled={!isYourTurn(gameState, userName)}
-          />
+          <div className="card-rows">
+            <DrawPile
+              cardType={CardType.Event}
+              socketEmitters={socketEmitters}
+              disabled={!isYourTurn(gameState, userName)}
+            />
+            {gameState?.cards?.map(card => {
+              if (getCardTypeFromID(card) === CardType.Event) {
+                return <Card key={card} id={card} />;
+              }
+            })}
+          </div>
+          <div className="card-rows">
+            <DrawPile
+              cardType={CardType.Thing}
+              socketEmitters={socketEmitters}
+              disabled={!isYourTurn(gameState, userName)}
+            />
+            {gameState?.cards?.map(card => {
+              if (getCardTypeFromID(card) === CardType.Thing) {
+                return <Card key={card} id={card} />;
+              }
+            })}
+          </div>
+          <div className="card-rows">
+            <DrawPile
+              cardType={CardType.Inhabitant}
+              socketEmitters={socketEmitters}
+              disabled={!isYourTurn(gameState, userName)}
+            />
+            {gameState?.cards?.map(card => {
+              if (getCardTypeFromID(card) === CardType.Inhabitant) {
+                return <Card key={card} id={card} />;
+              }
+            })}
+          </div>
         </div>
       </div>
     </div>

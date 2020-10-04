@@ -104,8 +104,8 @@ io.on("connection", function(socket) {
   });
 
   socket.on("nextTurn", (roomName, cardType) => {
-    console.log(`Next turn in ${roomName} with type ${cardType}`);
     let newCardID = 0;
+
     if (cardType === 1) {
       // Event
       newCardID = getRandomInt(EVENT_RANGE[0], EVENT_RANGE[1]);
@@ -122,6 +122,10 @@ io.on("connection", function(socket) {
     rooms[roomName].cards.push(newCardID);
     rooms[roomName].playerTurn =
       (rooms[roomName].playerTurn + 1) % rooms[roomName].players.length;
+
+    console.log(
+      `Next turn in ${roomName} with type ${cardType}, cardID ${newCardID}`
+    );
 
     io.to(roomName).emit("updateGameState", rooms[roomName]);
   });

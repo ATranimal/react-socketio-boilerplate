@@ -8,6 +8,11 @@
 
 .card-buttons {
   height: 100%;
+
+  .card-rows {
+    display: flex;
+    overflow: auto;
+  }
 }
 
 .theme-card {
