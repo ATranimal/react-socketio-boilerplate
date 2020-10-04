@@ -37,11 +37,11 @@ export const LoginPage = (props: LoginPageProps) => {
     return (
       <div className="selection-buttons">
         <button onClick={() => setLoginPageState(LoginState.Create)}>
-          Create a room
+          Create or Join a room
         </button>
-        <button onClick={() => setLoginPageState(LoginState.Join)}>
+        {/* <button onClick={() => setLoginPageState(LoginState.Join)}>
           Join a room
-        </button>
+        </button> */}
       </div>
     );
   };
@@ -66,6 +66,9 @@ export const LoginPage = (props: LoginPageProps) => {
           value="Create Room"
           disabled={roomName === null && userName === null}
         />
+        <button onClick={() => setLoginPageState(LoginState.Main)}>
+          {"< Back"}
+        </button>
       </form>
     );
   };
@@ -83,7 +86,14 @@ export const LoginPage = (props: LoginPageProps) => {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         ></input>
-        <input type="submit" />
+        <input
+          type="submit"
+          value="Join Room"
+          disabled={roomName === null && userName === null}
+        />
+        <button onClick={() => setLoginPageState(LoginState.Main)}>
+          {"< Back"}
+        </button>
       </form>
     );
   };

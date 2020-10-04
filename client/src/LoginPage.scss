@@ -1,3 +1,5 @@
+@import "./styles/_colors.scss";
+
 .selection-buttons {
   button {
     margin: 12px 24px;
@@ -39,5 +41,15 @@
     padding: 8px;
     font-size: 16px;
     letter-spacing: 0.15em;
+  }
+
+  button {
+    background-color: $bg-colour;
+    border: 0px;
+    font-size: 14px;
+
+    &:hover {
+      color: #550071;
+    }
   }
 }
