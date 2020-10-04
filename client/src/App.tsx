@@ -38,7 +38,6 @@ const App = () => {
       socket.emit("join", roomName, userName);
 
       socket.on("updateGameState", (gameState: GameState) => {
-        console.log(gameState);
         setGameState(gameState);
       });
 

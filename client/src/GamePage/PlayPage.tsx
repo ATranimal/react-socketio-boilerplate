@@ -37,7 +37,7 @@ export const PlayPage = (props: PlayPageProps) => {
       >
         <div
           className="theme-card"
-          style={{ top: isThemeOpen ? "50%" : "-12%" }}
+          style={{ top: isThemeOpen ? "50%" : "-10%"}}
           onClick={() => {
             setIsThemeOpen(!isThemeOpen);
           }}
