@@ -17,7 +17,9 @@ export const WaitingPage = (props: WaitingPageProps) => {
     <div className="waiting-page">
       <h2>Waiting for players to connect...</h2>
       <div className="room-display">
-        <div className="room-display-name">Room Name: {roomName}</div>
+        <div className="room-display-name">
+          <h3>{roomName}</h3>
+        </div>
       </div>
       <PlayerList players={gameState?.players} activePlayerIndex={null} />
       {gameState?.players?.[0] === userName && (

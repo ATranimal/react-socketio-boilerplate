@@ -3,9 +3,9 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
 const PORT_NUMBER = 4001;
-const MAX_PLAYERS = 4;
-const MAX_ROOM_COUNT = 10;
-const ROOM_TIMEOUT = 1;
+const MAX_PLAYERS = 6;
+const MAX_ROOM_COUNT = 50;
+const ROOM_TIMEOUT = 3600000;
 
 const THEME_RANGE = [0, 7];
 const EVENT_RANGE = [8, 22];
@@ -54,7 +54,7 @@ io.on("connection", function (socket) {
       }
     }
 
-    console.log(rooms)
+    console.log(rooms);
     delete playerMap[socket.id];
   });
 
@@ -112,11 +112,11 @@ io.on("connection", function (socket) {
     io.to(roomName).emit("updateGameState", rooms[roomName]);
 
     setTimeout(() => {
-      console.log(`Room ${roomName} timed out.`)
+      console.log(`Room ${roomName} timed out.`);
       delete rooms[roomName];
-    }, ROOM_TIMEOUT)
+    }, ROOM_TIMEOUT);
   });
-
+  ``;
   socket.on("nextTurn", (roomName, cardType) => {
     if (Object.keys(rooms).includes(roomName)) {
       let newCardID = 0;
@@ -197,7 +197,9 @@ io.on("connection", function (socket) {
         console.log(`Max cards of type ${cardType} reached`);
       }
     } else {
-      console.log(`User tried to nextTurn in room ${roomName} that doesn't exist`)
+      console.log(
+        `User tried to nextTurn in room ${roomName} that doesn't exist`
+      );
     }
   });
 });

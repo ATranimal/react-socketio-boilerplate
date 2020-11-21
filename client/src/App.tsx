@@ -8,7 +8,7 @@ import { GameState, initialGameState, mockGameState } from "./models/GameState";
 import { SocketEmitters, initialSocketEmitters } from "./models/SocketEmitters";
 import { CardType } from "./models/CardType";
 
-const SERVER_IP = "localhost:4001";
+const SERVER_IP = "167.172.151.14";
 
 interface AppProps {
   name: string;

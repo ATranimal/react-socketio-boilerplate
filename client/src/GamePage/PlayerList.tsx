@@ -12,7 +12,7 @@ export const PlayerList = (props: PlayerListProps) => {
 
   return (
     <div className="player-count">
-      <label className="player-count-label">Players:</label>
+      <label className="player-count-label">Players</label>
       {players?.map((player, idx) => {
         return (
           <div

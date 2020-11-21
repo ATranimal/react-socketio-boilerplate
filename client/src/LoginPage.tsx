@@ -10,18 +10,8 @@ interface LoginPageProps {
   setConnected: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-enum LoginState {
-  "Main",
-  "Create",
-  "Join",
-}
-
 export const LoginPage = (props: LoginPageProps) => {
   const { roomName, setRoomName, userName, setUserName, setConnected } = props;
-
-  const [loginPageState, setLoginPageState] = useState<LoginState>(
-    LoginState.Main
-  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,21 +23,9 @@ export const LoginPage = (props: LoginPageProps) => {
     }
   };
 
-  const renderMain = () => {
-    return (
-      <div className="selection-buttons">
-        <button onClick={() => setLoginPageState(LoginState.Create)}>
-          Create or Join a room
-        </button>
-        {/* <button onClick={() => setLoginPageState(LoginState.Join)}>
-          Join a room
-        </button> */}
-      </div>
-    );
-  };
-
-  const renderCreate = () => {
-    return (
+  return (
+    <div className="login-page">
+      <h1>One Hour World Builders</h1>
       <form onSubmit={(e) => handleSubmit(e)} className="login-form">
         <label htmlFor="roomName">Room Name</label>
         <input
@@ -63,47 +41,10 @@ export const LoginPage = (props: LoginPageProps) => {
         ></input>
         <input
           type="submit"
-          value="Create Room"
+          value="Enter Room"
           disabled={roomName === null && userName === null}
         />
-        <button onClick={() => setLoginPageState(LoginState.Main)}>
-          {"< Back"}
-        </button>
       </form>
-    );
-  };
-
-  const renderJoin = () => {
-    return (
-      <form onSubmit={(e) => handleSubmit(e)} className="login-form">
-        <input
-          placeholder="Roomname"
-          value={roomName}
-          onChange={(e) => setRoomName(e.target.value)}
-        ></input>
-        <input
-          placeholder="Username"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        ></input>
-        <input
-          type="submit"
-          value="Join Room"
-          disabled={roomName === null && userName === null}
-        />
-        <button onClick={() => setLoginPageState(LoginState.Main)}>
-          {"< Back"}
-        </button>
-      </form>
-    );
-  };
-
-  return (
-    <div className="login-page">
-      <h1>One Hour World Builders</h1>
-      {loginPageState === LoginState.Main && renderMain()}
-      {loginPageState === LoginState.Create && renderCreate()}
-      {loginPageState === LoginState.Join && renderJoin()}
     </div>
   );
 };
