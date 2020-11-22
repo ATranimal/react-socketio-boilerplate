@@ -53,7 +53,7 @@ const cardText = [
   "Describe someone who is undeservingly remembered by your world. What are they remembered for? Why don’t they deserve it? Who did the work to make sure they are remembered?",
   "Describe someone who created a work of art that changed your world. What was their medium? How did it change things? What was their inspiration?",
   "Describe someone who led a group of people to a terrible fate. What happened to the people? What were the leader’s intentions? How did this affect the rest of the world?",
-  "Describe someone in your world who is profoundly privileged. What privileges do they have? Have they always had them? If not, how did they gain them? What do they do with their privilege?"
+  "Describe someone in your world who is profoundly privileged. What privileges do they have? Have they always had them? If not, how did they gain them? What do they do with their privilege?",
 ];
 
 export const getCardTextFromID = (id: number): string => {
@@ -77,13 +77,13 @@ export const getCardTypeFromID = (id: number): CardType => {
 export const getStringFromCardType = (cardType: CardType) => {
   switch (cardType) {
     case CardType.Theme:
-      return "Theme";
+      return "theme";
     case CardType.Event:
-      return "Event";
+      return "event";
     case CardType.Thing:
-      return "Thing";
+      return "thing";
     case CardType.Inhabitant:
-      return "Inhabitant";
+      return "inhabitant";
     default:
       break;
   }

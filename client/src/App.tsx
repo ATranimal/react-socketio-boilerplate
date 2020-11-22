@@ -10,7 +10,7 @@ import { CardType } from "./models/CardType";
 import { Rules } from "./Rules/Rules";
 import { RulesModal } from "./Rules/RulesModal";
 
-const SERVER_IP = "167.172.151.14";
+const SERVER_IP = "https://onehourworld.builders";
 // const SERVER_IP = "localhost:4001";
 
 interface AppProps {
