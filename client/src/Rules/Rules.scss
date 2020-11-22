@@ -1,0 +1,10 @@
+@import "../styles/_colors.scss";
+
+.rules {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  font-size: 24px;
+  color: $font-colour;
+  cursor: pointer;
+}

@@ -25,7 +25,11 @@ export const LoginPage = (props: LoginPageProps) => {
 
   return (
     <div className="login-page">
-      <h1>One Hour World Builders</h1>
+      <img
+        src="logo.png"
+        alt="One Hour World Builders Logo"
+        style={{ width: "20%", height: "auto", marginBottom: "24px" }}
+      />
       <form onSubmit={(e) => handleSubmit(e)} className="login-form">
         <label htmlFor="roomName">Room Name</label>
         <input

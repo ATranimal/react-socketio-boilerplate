@@ -23,11 +23,18 @@ export const DrawPile = (props: DrawPileProps) => {
       <div
         className="card"
         style={{
-          backgroundColor: getColourFromCardType(cardType)
+          backgroundColor: getColourFromCardType(cardType),
+          boxShadow: disabled ? "" : "4px 4px 4px 4px #98b4de",
+          cursor: disabled ? "" : "pointer",
         }}
-        onClick={() => addNewCard(cardType)}
+        onClick={() => {
+          if (!disabled) addNewCard(cardType);
+        }}
       >
-        {getStringFromCardType(cardType)}
+        <img
+          src={`${getStringFromCardType(cardType)}-text.png`}
+          alt={`Draw pile for ${getStringFromCardType(cardType)}`}
+        />
       </div>
     </div>
   );

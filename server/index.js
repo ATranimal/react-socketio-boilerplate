@@ -9,7 +9,7 @@ const ROOM_TIMEOUT = 3600000;
 
 const THEME_RANGE = [0, 7];
 const EVENT_RANGE = [8, 22];
-const THING_RANGE = [23, 37];
+const THING_RANGE = [23, 37]; 
 const INHABITANT_RANGE = [38, 52];
 
 /* PlayerMap struct:
