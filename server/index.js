@@ -7,9 +7,9 @@ app.use(cors());
 io.origins("*:*");
 
 const PORT_NUMBER = 4001;
-const MAX_PLAYERS = 6;
-const MAX_ROOM_COUNT = 50;
-const ROOM_TIMEOUT = 3600000;
+const MAX_PLAYERS = 25;
+const MAX_ROOM_COUNT = 100;
+const ROOM_TIMEOUT = 3600000 * 12; // 12 hours
 
 const THEME_RANGE = [0, 7];
 const EVENT_RANGE = [8, 22];
